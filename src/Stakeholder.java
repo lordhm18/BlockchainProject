@@ -44,8 +44,8 @@ double bal;
     }
 
     public String toString() {
-        return "\n" + ID + "," + name + "," +
-                addr + "," + bal ;
+        return "\n" + "Stakeholder: " + ID + ", " + name + ", " +
+                addr + ", $" + bal ;
     }
 
 
