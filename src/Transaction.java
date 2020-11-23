@@ -2,13 +2,14 @@ import java.time.LocalDateTime;
 
 public class Transaction {
     Artefact art;
-    LocalDateTime timestamp;
+    //LocalDateTime timestamp;
+    int timestamp;
     Stakeholder seller;
     Stakeholder buyer;
     Stakeholder aucHouse;
     double price;
 
-    public Transaction(Artefact art, LocalDateTime timestamp,Stakeholder seller,Stakeholder buyer,Stakeholder aucHouse,double price){
+    public Transaction(Artefact art, int timestamp,Stakeholder seller,Stakeholder buyer,Stakeholder aucHouse,double price){
         this.art=art;
         this.timestamp=timestamp;
         this.seller=seller;
@@ -21,7 +22,8 @@ public class Transaction {
         this.art=a;
     }
 
-    public void setTimestamp (LocalDateTime t){
+   // public void setTimestamp (LocalDateTime t){
+    public void setTimestamp(int t){
         this.timestamp=t;
     }
 
@@ -45,7 +47,8 @@ public class Transaction {
         return art;
     }
 
-    public LocalDateTime getTimestamp(){
+   // public LocalDateTime getTimestamp(){
+     public int getTimeStamp(){
         return timestamp;
     }
 
