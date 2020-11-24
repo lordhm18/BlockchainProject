@@ -1,8 +1,10 @@
 public class Stakeholder {
-String ID;
-String name;
-String addr;
-double bal;
+    String ID;
+    String name;
+    String addr;
+    double bal;
+
+    public Stakeholder(){}
 
     public Stakeholder(String ID, String n, String a, double bal ){
         this.ID=ID;
