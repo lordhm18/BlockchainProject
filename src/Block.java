@@ -1,6 +1,7 @@
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Block {
@@ -10,50 +11,52 @@ public class Block {
     int nonce;
     String hash;
 
-    public Block(){}
-
-    public Block(Transaction d){
-        this.data=d;
+    public Block() {
     }
 
-    public void setPreviousHash(String p){//how?
-        this.previousHash=p;
+    public Block(Transaction d) {
+        this.data = d;
     }
 
-    public void setData(Transaction d){
-        this.data=d;
-    }
-    public void setTimeStamp(long t){
-        this.timeStamp=t;
+    public void setPreviousHash(String p) {//how?
+        this.previousHash = p;
     }
 
-    public void setNonce(){
-        Random num=new Random();
-        int n= 10000000 +num.nextInt(99999999);
-        this.nonce=n;
+    public void setData(Transaction d) {
+        this.data = d;
     }
 
-    public void setHash(String h){//how?
-        this.hash=h;
+    public void setTimeStamp(long t) {
+        this.timeStamp = t;
     }
 
-    public String getPreviousHash(){
+    public void setNonce() {
+        Random num = new Random();
+        int n = 100000 + num.nextInt(999999);
+        this.nonce = n;
+    }
+
+    public void setHash(String h) {//how?
+        this.hash = h;
+    }
+
+    public String getPreviousHash() {
         return previousHash;
     }
 
-    public Transaction getData(){
+    public Transaction getData() {
         return this.data;
     }
 
-    public long getTimeStamp(){
+    public long getTimeStamp() {
         return this.timeStamp;
     }
 
-    public int getNonce(){
+    public int getNonce() {
         return this.nonce;
     }
 
-    public String getHash(){//need?
+    public String getHash() {//need?
         return hash;
     }
 
@@ -66,7 +69,7 @@ public class Block {
         byte[] bytes = null;
         try {
             digest = MessageDigest.getInstance("SHA-256");
-            bytes = digest.digest(dataToHash.getBytes("UTF-8"));//how to fix?
+            bytes = digest.digest(dataToHash.getBytes("UTF-8"));
         } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
             System.out.println("The encoding is not supported");
         }
@@ -77,23 +80,29 @@ public class Block {
         return buffer.toString();
     }
 
-    public void mineBlock(int prefix){//public void?
+    public void mineBlock(int prefix) {//public void?
+        //if ()
 
     }
 
     //SC treaty
 
- /*   public Transaction retrieveProvenance(String ID){//identify for artefact? how?
-        Transaction t=new Transaction();
-       Artefact a= new Artefact();
-        Stakeholder s= new Stakeholder();
-        if(ID==t.getArt().getID()){
-            return t;
-        }
 
-        return t;
+    public ArrayList<Transaction> retrieveProvenance(String ID) {
+        ArrayList<Transaction> arr = new ArrayList<>();
+        if (ID == data.getArt().getID()) {//conditions for loop? need to find all IDs
+            arr.add(data);
+        }
+        return arr;//return array of type transaction
     }
 
-  */
+    public ArrayList<Transaction> retrieveProvenance(String ID, long timeStamp) {
+        ArrayList<Transaction> arr = new ArrayList<>();
+        if (data.getTimeStamp()<=timeStamp){
+            if(ID == data.getArt().getID());
+            arr.add(data);
+        }
+        return arr;
 
+    }
 }

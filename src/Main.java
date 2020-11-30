@@ -1,6 +1,3 @@
-import java.util.Random;
-import java.util.concurrent.atomic.AtomicBoolean;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -14,5 +11,6 @@ public class Main {
         System.out.println(s.toString());
         System.out.println(a.toString());
         System.out.println(t.toString());
+
     }
 }
