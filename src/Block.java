@@ -88,8 +88,8 @@ public class Block {
                     found=true;
                 }
                 nonce++;
-                calculateBlockHash();
-                //hash=calculateBlockHash();
+                //calculateBlockHash();
+                hash=calculateBlockHash();
             }
         }
         else{
@@ -115,7 +115,7 @@ public class Block {
 
     public ArrayList<Transaction> retrieveProvenance(String ID) {
         ArrayList<Transaction> arr = new ArrayList<>();
-        for (int i=0;i<blockchain.size;i++){
+        for (int i=0;i<Main.blockchain.size;i++){
         if (block.i) {
             //(ID == data.getArt().getID()) {//conditions for loop? need to find all IDs
             arr.add(data);
