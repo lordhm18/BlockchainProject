@@ -1,12 +1,12 @@
 public class Artefact {
     String ID;
     String name;
-    String country;
+    Stakeholder country;
     Stakeholder owner;
 
     public Artefact(){}
 
-    public Artefact(String ID, String name, String country, Stakeholder owner ){
+    public Artefact(String ID, String name, Stakeholder country, Stakeholder owner ){
         this.ID=ID;
         this.name=name;
         this.country=country;
@@ -21,7 +21,7 @@ public class Artefact {
         this.name=name;
     }
 
-    public void setCountry(String country){
+    public void setCountry(Stakeholder country){
         this.country=country;
     }
 
@@ -37,7 +37,7 @@ public class Artefact {
         return name;
     }
 
-    public String getCountry(){
+    public Stakeholder getCountry(){
         return country;
     }
 

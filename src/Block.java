@@ -80,29 +80,69 @@ public class Block {
         return buffer.toString();
     }
 
-    public void mineBlock(int prefix) {//public void?
-        //if ()
-
+    public void mineBlock(int prefix) {//review
+        if (TreatySC(data)==true){
+            boolean found=false;
+            while (!found){
+                if(nonce==prefix){
+                    found=true;
+                }
+                nonce++;
+                calculateBlockHash();
+                //hash=calculateBlockHash();
+            }
+        }
+        else{
+            System.out.println("Error: transaction not valid.");
+        }
     }
 
-    //SC treaty
+    public boolean TreatySC(Transaction t){
+       boolean valid= false;
+        //if(retrieveProvenance())
+        if(data.getBuyer().getBal()>=data.getPrice()){
+            double p= data.getPrice();
+
+            data.getAucHouse().setBal(p*.1);
+            data.getSeller().setBal(p*.7);
+            data.getArt().country.setBal(p*.2);
+
+            valid=true;
+        }
+        return valid;
+    }
 
 
     public ArrayList<Transaction> retrieveProvenance(String ID) {
         ArrayList<Transaction> arr = new ArrayList<>();
-        if (ID == data.getArt().getID()) {//conditions for loop? need to find all IDs
+        for (int i=0;i<blockchain.size;i++){
+        if (block.i) {
+            //(ID == data.getArt().getID()) {//conditions for loop? need to find all IDs
             arr.add(data);
-        }
+        }}
         return arr;//return array of type transaction
     }
 
     public ArrayList<Transaction> retrieveProvenance(String ID, long timeStamp) {
         ArrayList<Transaction> arr = new ArrayList<>();
-        if (data.getTimeStamp()<=timeStamp){
-            if(ID == data.getArt().getID());
-            arr.add(data);
+        for(int i=0;i<block.size;i++) {
+
+            if (ID == data.getArt().getID()) {
+                if (data.getTimeStamp() <= timeStamp) {
+                    arr.add(data);
+                }
+            }
         }
         return arr;
+    }
 
+    public boolean verify_Blockchain(ArrayList<Block>BC){
+        boolean valid=false;
+        // Verify that the stored hash of the current block is actually what it calculates
+        // Verify that the hash of the previous block stored in the current block is the hash
+        // of the previous block
+        // Verify that the current block has been mined
+
+        return valid;
     }
 }
