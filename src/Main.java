@@ -32,22 +32,15 @@ public class Main {
         Artefact a3 = new Artefact("D909", "Sketch", c3, o3);
         Transaction data3 = new Transaction(a3, 1999, s3, b3, auc3, 700);
 
-       /* System.out.println(s.toString());
-        System.out.println(a.toString());
-        System.out.println(t.toString());
-        */
-
 
         int prefix = 4;   //hash starts with four zeroes
          String prefixString = new String(new char[prefix]).replace('\0', '0');
 
-       /* Block genesisBlock = new Block(data1,blockchain.get(blockchain.size()-1).getHash(), new Date().getTime());
-        genesisBlock.mineBlock(prefix);
-        */
 
         Block genesisBlock = new Block(data1, " ", new Date().getTime());
         genesisBlock.mineBlock1(prefix);
 
+        System.out.println("Genesis Block");
         System.out.println(genesisBlock.getHash());
         System.out.println(prefixString);
         System.out.println(genesisBlock.verify_Blockchain(blockchain));
@@ -59,7 +52,14 @@ public class Main {
             System.out.println("Malicious block, not added to the chain");
 
        Block secondBlock = new Block(data2, blockchain.get(blockchain.size() - 1).getHash(),new Date().getTime());
-        secondBlock.mineBlock(prefix);
+        secondBlock.mineBlock1(prefix);
+
+
+        System.out.println("Second Block");
+        System.out.println(secondBlock.getHash());
+        System.out.println(prefixString);
+        System.out.println(secondBlock.verify_Blockchain(blockchain));
+
         if (secondBlock.getHash().substring(0, prefix).equals(prefixString) && secondBlock.verify_Blockchain(blockchain))
             blockchain.add(secondBlock);
         else
@@ -67,6 +67,12 @@ public class Main {
 
         Block newBlock = new Block(data3,blockchain.get(blockchain.size() - 1).getHash(),new Date().getTime());
         newBlock.mineBlock(prefix);
+
+        System.out.println("Third Block");
+        System.out.println(secondBlock.getHash());
+        System.out.println(prefixString);
+        System.out.println(secondBlock.verify_Blockchain(blockchain));
+
         if (newBlock.getHash().substring(0, prefix).equals(prefixString) && newBlock.verify_Blockchain(blockchain))
             blockchain.add(newBlock);
         else

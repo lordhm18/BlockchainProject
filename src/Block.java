@@ -115,22 +115,21 @@ public class Block {
             }
                 nonce++;
         }}
-        else{
+       /* else{
             System.out.println("Error: transaction not valid.");
         }
+        */
     }
 
     public boolean TreatySC(Transaction t){
        boolean valid= false;
-
        ArrayList<Transaction> tmp = new ArrayList<>();
        String ID=null;
-       tmp= retrieveProvenance(ID);
+       tmp= retrieveProvenance(data.getArt().getID());
 
        if(tmp.size()>=2) {
            if (data.getBuyer().getBal() >= data.getPrice()) {
                double p = data.getPrice();
-
                data.getAucHouse().setBal(p * .1);
                data.getSeller().setBal(p * .7);
                data.getArt().country.setBal(p * .2);
@@ -143,17 +142,14 @@ public class Block {
 
     public boolean TreatySC1(Transaction t){
         boolean valid= false;
-
             if (data.getBuyer().getBal() >= data.getPrice()) {
                 double p = data.getPrice();
-
                 data.getAucHouse().setBal(p * .1);
                 data.getSeller().setBal(p * .7);
                 data.getArt().country.setBal(p * .2);
 
                 valid = true;
             }
-
         return valid;
     }
 
@@ -170,8 +166,8 @@ public class Block {
     public ArrayList<Transaction> retrieveProvenance(String ID, long timeStamp) {
         ArrayList<Transaction> arr = new ArrayList<>();
         for(int i=0;i<Main.blockchain.size();i++) {
-            if(Main.blockchain.get(i).data.getArt().getID().equals(ID)){
-                if(Main.blockchain.get(i).data.getTimeStamp()==(timeStamp)){
+            if(Main.blockchain.get(i).data.getTimeStamp()==(timeStamp)){
+                if(Main.blockchain.get(i).data.getArt().getID().equals(ID)){
                     arr.add(Main.blockchain.get(i).data);
                 }
             }
@@ -180,41 +176,44 @@ public class Block {
     }
 
     public boolean verify_Blockchain(ArrayList<Block>BC){
+        String prefixString = new String(new char[4]).replace('\0', '0');
         boolean valid=false;
-        // Verify that the stored hash of the current block is actually what it calculates
-        // Verify that the hash of the previous block stored in the current block is the hash
-        // of the previous block
-        // Verify that the current block has been mined
 
-        if(Main.blockchain.size()==1){
+        if(Main.blockchain.size()==0){
+            return true; }
 
-            return true;        }
-        for(int i=1;i<Main.blockchain.size();i++){
-            if(Main.blockchain.get(i).getHash().equals(calculateBlockHash())){
-                if(Main.blockchain.get(i-1).getHash().equals(getPreviousHash())){
-                   if(Main.blockchain.get(i).getHash().substring(0,3).equals("0000")){
-                        valid=true;
+            for (int i = 1; i <= Main.blockchain.size(); i++) {
+                System.out.println("test");
+
+               /* if (Main.blockchain.get(i).getHash().equals(Main.blockchain.get(i).calculateBlockHash())) {
+                    System.out.println("1");
+                    if (Main.blockchain.get(i).getHash().equals(getPreviousHash())) {
+                        System.out.println("2");
+                        if (Main.blockchain.get(i).getHash().substring(0, 4).equals(prefixString)) {
+                            System.out.println("3");
+                            valid = true;
+                        }
+                    }
+                }
+                */
+                System.out.println("0");
+                System.out.println("hash: "+getHash());
+                System.out.println("calc:"+calculateBlockHash());
+
+
+                if(getHash().equals(calculateBlockHash())){//not equal (calculating wrong hash w/out "0000"
+                    System.out.println("1");
+                    if (Main.blockchain.get(i-1).getHash().equals(getPreviousHash())){
+                        System.out.println("2");
+                        if(getHash().substring(0,4).equals(prefixString)){
+                            valid=true;
+                        }
                     }
                 }
             }
-        }
+
+
         return valid;
     }
 
-    public boolean verify_Blockchain1(ArrayList<Block>BC){
-        boolean valid=true;
-        // Verify that the stored hash of the current block is actually what it calculates
-        // Verify that the hash of the previous block stored in the current block is the hash
-        // of the previous block
-        // Verify that the current block has been mined
-
-        for(int i=1;i<Main.blockchain.size();i++){
-            if(Main.blockchain.get(i).getHash().equals(calculateBlockHash())){
-                    if(Main.blockchain.get(i).getHash().substring(0,3).equals("0000")){
-                        valid=true;
-                    }
-                }
-            }
-        return valid;
-    }
 }
