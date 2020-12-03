@@ -24,6 +24,13 @@ public class Block {
         this.timeStamp=timeStamp;
     }
 
+  /*  public Block(Transaction data,long timeStamp){
+        this.data=data;
+        this.timeStamp=timeStamp;
+    }
+
+   */
+
     public void setPreviousHash(String p) {//how?
         this.previousHash = p;
     }
