@@ -42,7 +42,7 @@ public class Block {
         this.nonce = n;
     }
 
-    public void setHash(String h) {//how?
+    public void setHash(String h) {
         this.hash = h;
     }
 
@@ -86,15 +86,16 @@ public class Block {
         return buffer.toString();
     }
 
-    public void mineBlock(int prefix) {//review
+    public void mineBlock(int prefix) {
+        String prefixString = new String(new char[prefix]).replace('\0', '0');
         if (TreatySC(data)==true){
             boolean found=false;
-            while (!found){
-                if(nonce==prefix){
+            while(!found){
+                this.hash=calculateBlockHash();
+                if(getHash().substring(0,prefix).equals(prefixString)){
                     found=true;
                 }
                 nonce++;
-                this.hash=calculateBlockHash();
             }
         }
         else{
@@ -104,12 +105,18 @@ public class Block {
 
     public void mineBlock1(int prefix){
         boolean found=false;
+        String prefixString = new String(new char[prefix]).replace('\0', '0');
+
+        if (TreatySC1(data)==true){
         while(!found){
-            if(nonce==prefix){
+            this.hash=calculateBlockHash();
+           if(getHash().substring(0,prefix).equals(prefixString)){
                 found=true;
             }
-            nonce++;
-            this.hash=calculateBlockHash();
+                nonce++;
+        }}
+        else{
+            System.out.println("Error: transaction not valid.");
         }
     }
 
@@ -134,7 +141,21 @@ public class Block {
         return valid;
     }
 
+    public boolean TreatySC1(Transaction t){
+        boolean valid= false;
 
+            if (data.getBuyer().getBal() >= data.getPrice()) {
+                double p = data.getPrice();
+
+                data.getAucHouse().setBal(p * .1);
+                data.getSeller().setBal(p * .7);
+                data.getArt().country.setBal(p * .2);
+
+                valid = true;
+            }
+
+        return valid;
+    }
 
     public ArrayList<Transaction> retrieveProvenance(String ID) {
         ArrayList<Transaction> arr = new ArrayList<>();
@@ -165,7 +186,10 @@ public class Block {
         // of the previous block
         // Verify that the current block has been mined
 
-        for(int i=0;i<Main.blockchain.size();i++){
+        if(Main.blockchain.size()==1){
+
+            return true;        }
+        for(int i=1;i<Main.blockchain.size();i++){
             if(Main.blockchain.get(i).getHash().equals(calculateBlockHash())){
                 if(Main.blockchain.get(i-1).getHash().equals(getPreviousHash())){
                    if(Main.blockchain.get(i).getHash().substring(0,3).equals("0000")){
@@ -174,6 +198,23 @@ public class Block {
                 }
             }
         }
+        return valid;
+    }
+
+    public boolean verify_Blockchain1(ArrayList<Block>BC){
+        boolean valid=true;
+        // Verify that the stored hash of the current block is actually what it calculates
+        // Verify that the hash of the previous block stored in the current block is the hash
+        // of the previous block
+        // Verify that the current block has been mined
+
+        for(int i=1;i<Main.blockchain.size();i++){
+            if(Main.blockchain.get(i).getHash().equals(calculateBlockHash())){
+                    if(Main.blockchain.get(i).getHash().substring(0,3).equals("0000")){
+                        valid=true;
+                    }
+                }
+            }
         return valid;
     }
 }

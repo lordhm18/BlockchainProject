@@ -52,6 +52,7 @@ public class Main {
         System.out.println(prefixString);
         System.out.println(genesisBlock.verify_Blockchain(blockchain));
 
+
         if (genesisBlock.getHash().substring(0, prefix).equals(prefixString) && genesisBlock.verify_Blockchain(blockchain))
             blockchain.add(genesisBlock);
         else
