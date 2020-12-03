@@ -73,6 +73,7 @@ public class Main {
         System.out.println(prefixString);
         System.out.println(secondBlock.verify_Blockchain(blockchain));
 
+        System.out.println(newBlock.getHash());
         if (newBlock.getHash().substring(0, prefix).equals(prefixString) && newBlock.verify_Blockchain(blockchain))
             blockchain.add(newBlock);
         else

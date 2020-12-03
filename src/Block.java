@@ -88,7 +88,9 @@ public class Block {
 
     public void mineBlock(int prefix) {
         String prefixString = new String(new char[prefix]).replace('\0', '0');
-        if (TreatySC(data)==true){
+        this.hash=calculateBlockHash();
+
+        if (TreatySC(data)){
             boolean found=false;
             while(!found){
                 this.hash=calculateBlockHash();
@@ -107,7 +109,7 @@ public class Block {
         boolean found=false;
         String prefixString = new String(new char[prefix]).replace('\0', '0');
 
-        if (TreatySC1(data)==true){
+        if (TreatySC1(data)){
         while(!found){
             this.hash=calculateBlockHash();
            if(getHash().substring(0,prefix).equals(prefixString)){
@@ -201,8 +203,8 @@ public class Block {
                 System.out.println("calc:"+calculateBlockHash());
 
 
-                if(getHash().equals(calculateBlockHash())){//not equal (calculating wrong hash w/out "0000"
-                    System.out.println("1");
+               // if(getHash().equals(calculateBlockHash())){//not equal (calculating wrong hash w/out "0000"
+                 //   System.out.println("1");
                     if (Main.blockchain.get(i-1).getHash().equals(getPreviousHash())){
                         System.out.println("2");
                         if(getHash().substring(0,4).equals(prefixString)){
@@ -210,8 +212,7 @@ public class Block {
                         }
                     }
                 }
-            }
-
+            //}
 
         return valid;
     }
