@@ -24,14 +24,7 @@ public class Block {
         this.timeStamp=timeStamp;
     }
 
-  /*  public Block(Transaction data,long timeStamp){
-        this.data=data;
-        this.timeStamp=timeStamp;
-    }
-
-   */
-
-    public void setPreviousHash(String p) {//how?
+    public void setPreviousHash(String p) {
         this.previousHash = p;
     }
 
@@ -69,7 +62,7 @@ public class Block {
         return this.nonce;
     }
 
-    public String getHash() {//need?
+    public String getHash() {
         return hash;
     }
 
@@ -101,12 +94,22 @@ public class Block {
                     found=true;
                 }
                 nonce++;
-                //calculateBlockHash();
-                hash=calculateBlockHash();
+                this.hash=calculateBlockHash();
             }
         }
         else{
             System.out.println("Error: transaction not valid.");
+        }
+    }
+
+    public void mineBlock1(int prefix){
+        boolean found=false;
+        while(!found){
+            if(nonce==prefix){
+                found=true;
+            }
+            nonce++;
+            this.hash=calculateBlockHash();
         }
     }
 
@@ -130,6 +133,7 @@ public class Block {
        }
         return valid;
     }
+
 
 
     public ArrayList<Transaction> retrieveProvenance(String ID) {
@@ -164,11 +168,11 @@ public class Block {
         for(int i=0;i<Main.blockchain.size();i++){
             if(Main.blockchain.get(i).getHash().equals(calculateBlockHash())){
                 if(Main.blockchain.get(i-1).getHash().equals(getPreviousHash())){
-                  //  if(){//how to check if current block has been mined
+                   if(Main.blockchain.get(i).getHash().substring(0,3).equals("0000")){
                         valid=true;
                     }
                 }
-            //}
+            }
         }
         return valid;
     }

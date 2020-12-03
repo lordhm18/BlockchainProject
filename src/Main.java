@@ -38,15 +38,20 @@ public class Main {
         */
 
 
-        //ArrayList<Block> blockchain = new ArrayList<>();
-        int prefix = 4;   //we want our hash to start with four zeroes
+        int prefix = 4;   //hash starts with four zeroes
          String prefixString = new String(new char[prefix]).replace('\0', '0');
-        // data1-data3 should be filled by the user
+
        /* Block genesisBlock = new Block(data1,blockchain.get(blockchain.size()-1).getHash(), new Date().getTime());
         genesisBlock.mineBlock(prefix);
         */
-        Block genesisBlock = new Block(data1, null, new Date().getTime());
-        genesisBlock.mineBlock(prefix);
+
+        Block genesisBlock = new Block(data1, " ", new Date().getTime());
+        genesisBlock.mineBlock1(prefix);
+
+        System.out.println(genesisBlock.getHash());
+        System.out.println(prefixString);
+        System.out.println(genesisBlock.verify_Blockchain(blockchain));
+
         if (genesisBlock.getHash().substring(0, prefix).equals(prefixString) && genesisBlock.verify_Blockchain(blockchain))
             blockchain.add(genesisBlock);
         else
