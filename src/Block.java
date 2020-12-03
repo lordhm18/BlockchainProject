@@ -18,6 +18,12 @@ public class Block {
         this.data = d;
     }
 
+    public Block(Transaction data,String previousHash,long timeStamp){
+        this.data=data;
+        this.previousHash=previousHash;
+        this.timeStamp=timeStamp;
+    }
+
     public void setPreviousHash(String p) {//how?
         this.previousHash = p;
     }
@@ -99,37 +105,42 @@ public class Block {
 
     public boolean TreatySC(Transaction t){
        boolean valid= false;
-        //if(retrieveProvenance())
-        if(data.getBuyer().getBal()>=data.getPrice()){
-            double p= data.getPrice();
 
-            data.getAucHouse().setBal(p*.1);
-            data.getSeller().setBal(p*.7);
-            data.getArt().country.setBal(p*.2);
+       ArrayList<Transaction> tmp = new ArrayList<>();
+       String ID=null;
+       tmp= retrieveProvenance(ID);
 
-            valid=true;
-        }
+       if(tmp.size()>=2) {
+           if (data.getBuyer().getBal() >= data.getPrice()) {
+               double p = data.getPrice();
+
+               data.getAucHouse().setBal(p * .1);
+               data.getSeller().setBal(p * .7);
+               data.getArt().country.setBal(p * .2);
+
+               valid = true;
+           }
+       }
         return valid;
     }
 
 
     public ArrayList<Transaction> retrieveProvenance(String ID) {
         ArrayList<Transaction> arr = new ArrayList<>();
-        for (int i=0;i<Main.blockchain.size;i++){
-        if (block.i) {
-            //(ID == data.getArt().getID()) {//conditions for loop? need to find all IDs
-            arr.add(data);
-        }}
+        for (int i=0;i<Main.blockchain.size();i++){
+            if(Main.blockchain.get(i).data.getArt().getID().equals(ID)){
+            arr.add(Main.blockchain.get(i).data);
+        }
+        }
         return arr;//return array of type transaction
     }
 
     public ArrayList<Transaction> retrieveProvenance(String ID, long timeStamp) {
         ArrayList<Transaction> arr = new ArrayList<>();
-        for(int i=0;i<block.size;i++) {
-
-            if (ID == data.getArt().getID()) {
-                if (data.getTimeStamp() <= timeStamp) {
-                    arr.add(data);
+        for(int i=0;i<Main.blockchain.size();i++) {
+            if(Main.blockchain.get(i).data.getArt().getID().equals(ID)){
+                if(Main.blockchain.get(i).data.getTimeStamp()==(timeStamp)){
+                    arr.add(Main.blockchain.get(i).data);
                 }
             }
         }
@@ -143,6 +154,15 @@ public class Block {
         // of the previous block
         // Verify that the current block has been mined
 
+        for(int i=0;i<Main.blockchain.size();i++){
+            if(Main.blockchain.get(i).getHash().equals(calculateBlockHash())){
+                if(Main.blockchain.get(i-1).getHash().equals(getPreviousHash())){
+                  //  if(){//how to check if current block has been mined
+                        valid=true;
+                    }
+                }
+            //}
+        }
         return valid;
     }
 }
