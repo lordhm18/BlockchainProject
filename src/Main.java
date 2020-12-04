@@ -41,8 +41,6 @@ public class Main {
         genesisBlock.mineBlock1(prefix);
 
         System.out.println("Genesis Block");
-        System.out.println(genesisBlock.getHash());
-        System.out.println(prefixString);
         System.out.println(genesisBlock.verify_Blockchain(blockchain));
 
 
@@ -54,10 +52,7 @@ public class Main {
        Block secondBlock = new Block(data2, blockchain.get(blockchain.size() - 1).getHash(),new Date().getTime());
         secondBlock.mineBlock1(prefix);
 
-
         System.out.println("Second Block");
-        System.out.println(secondBlock.getHash());
-        System.out.println(prefixString);
         System.out.println(secondBlock.verify_Blockchain(blockchain));
 
         if (secondBlock.getHash().substring(0, prefix).equals(prefixString) && secondBlock.verify_Blockchain(blockchain))
@@ -69,15 +64,14 @@ public class Main {
         newBlock.mineBlock(prefix);
 
         System.out.println("Third Block");
-        System.out.println(secondBlock.getHash());
-        System.out.println(prefixString);
         System.out.println(secondBlock.verify_Blockchain(blockchain));
-
         System.out.println(newBlock.getHash());
+
         if (newBlock.getHash().substring(0, prefix).equals(prefixString) && newBlock.verify_Blockchain(blockchain))
             blockchain.add(newBlock);
         else
             System.out.println("Malicious block, not added to the chain");
+
 
     }
 }
