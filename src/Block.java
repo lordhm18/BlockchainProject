@@ -101,6 +101,7 @@ public class Block {
             }
         }
         else{
+            this.hash="    ";
             System.out.println("Error: transaction not valid.");
         }
     }
@@ -117,16 +118,16 @@ public class Block {
             }
                 nonce++;
         }}
-       /* else{
+        else{
+            this.hash="    ";
             System.out.println("Error: transaction not valid.");
         }
-        */
+
     }
 
     public boolean TreatySC(Transaction t){
        boolean valid= false;
        ArrayList<Transaction> tmp = new ArrayList<>();
-       String ID=null;
        tmp= retrieveProvenance(data.getArt().getID());
 
        if(tmp.size()>=2) {
@@ -181,10 +182,10 @@ public class Block {
         String prefixString = new String(new char[4]).replace('\0', '0');
         boolean valid=false;
 
-        if(Main.blockchain.size()==0){
+        if(BC.size()==0){
             return true; }
 
-            for (int i = 1; i <= Main.blockchain.size(); i++) {
+            for (int i = 1; i <= BC.size(); i++) {
 
                /* if (Main.blockchain.get(i).getHash().equals(Main.blockchain.get(i).calculateBlockHash())) {
                     System.out.println("1");
@@ -198,12 +199,13 @@ public class Block {
                 }
                 */
                 System.out.println("hash: "+getHash());
-                System.out.println("calc:"+calculateBlockHash());
 
+
+                System.out.println("calc:"+calculateBlockHash());
 
                // if(getHash().equals(calculateBlockHash())){//not equal (calculating wrong hash w/out "0000"
                  //   System.out.println("1");
-                    if (Main.blockchain.get(i-1).getHash().equals(getPreviousHash())){
+                    if (BC.get(i-1).getHash().equals(getPreviousHash())){
                         if(getHash().substring(0,4).equals(prefixString)){
                             valid=true;
                         }
