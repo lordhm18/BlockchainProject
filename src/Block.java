@@ -14,10 +14,6 @@ public class Block {
     public Block() {
     }
 
-    public Block(Transaction d) {
-        this.data = d;
-    }
-
     public Block(Transaction data,String previousHash,long timeStamp){
         this.data=data;
         this.previousHash=previousHash;
@@ -93,11 +89,11 @@ public class Block {
         if (TreatySC(data)){
             boolean found=false;
             while(!found){
+                nonce++;
                 this.hash=calculateBlockHash();
                 if(getHash().substring(0,prefix).equals(prefixString)){
                     found=true;
                 }
-                nonce++;
             }
         }
         else{
@@ -112,11 +108,12 @@ public class Block {
 
         if (TreatySC1(data)){
         while(!found){
+            nonce++;
             this.hash=calculateBlockHash();
            if(getHash().substring(0,prefix).equals(prefixString)){
                 found=true;
             }
-                nonce++;
+
         }}
         else{
             this.hash="    ";
@@ -130,7 +127,7 @@ public class Block {
        ArrayList<Transaction> tmp = new ArrayList<>();
        tmp= retrieveProvenance(data.getArt().getID());
 
-       if(tmp.size()>=2) {
+      // if(tmp.size()>=2) {
            if (data.getBuyer().getBal() >= data.getPrice()) {
                double p = data.getPrice();
                data.getAucHouse().setBal(p * .1);
@@ -139,7 +136,7 @@ public class Block {
 
                valid = true;
            }
-       }
+     //  }
         return valid;
     }
 
@@ -200,10 +197,14 @@ public class Block {
                 */
                 System.out.println("hash: "+getHash());
 
+               // Block tmp=new Block(getData(),getPreviousHash(),getTimeStamp());
+
+               // tmp.mineBlock1(4);
+                //System.out.println("tmp hash "+tmp.getHash());
 
                 System.out.println("calc:"+calculateBlockHash());
 
-               // if(getHash().equals(calculateBlockHash())){//not equal (calculating wrong hash w/out "0000"
+                if(getHash().equals(calculateBlockHash())){//not equal (calculating wrong hash w/out "0000"
                  //   System.out.println("1");
                     if (BC.get(i-1).getHash().equals(getPreviousHash())){
                         if(getHash().substring(0,4).equals(prefixString)){
@@ -211,7 +212,7 @@ public class Block {
                         }
                     }
                 }
-            //}
+            }
 
         return valid;
     }
