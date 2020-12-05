@@ -1,8 +1,8 @@
 public class Artefact {
-    String ID;
-    String name;
-    Stakeholder country;
-    Stakeholder owner;
+    private String ID;
+    private String name;
+    private Stakeholder country;
+    private Stakeholder owner;
 
     public Artefact(){}
 

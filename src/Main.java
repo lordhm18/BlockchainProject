@@ -1,13 +1,17 @@
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
 
 
 public class Main {
-     ///static Main blockchain= new Main();
-
     static ArrayList<Block> blockchain=new ArrayList<>();
 
     public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+
         Stakeholder o = new Stakeholder("O333", "Mary", "25 Spring St", 5000);
         Stakeholder s = new Stakeholder("S123", "Amy", "12 Oak Circle", 1000);
         Stakeholder b = new Stakeholder("B456", "Tom", "3 Penny Ln", 20000);
@@ -24,6 +28,7 @@ public class Main {
         Artefact a2 = new Artefact("D678", "Drawing", c2, o2);
         Transaction data2= new Transaction(a2, 1990, s2, b2, auc2, 1500);
 
+
         Stakeholder o3 = new Stakeholder("O555", "Sam", "7 Lion St", 6500);
         Stakeholder s3 = new Stakeholder("S888", "Kevin", "16 Art Circle", 10000);
         Stakeholder b3 = new Stakeholder("B929", "Alan", "5 Diamond Ln", 25000);
@@ -32,18 +37,287 @@ public class Main {
         Artefact a3 = new Artefact("D909", "Sketch", c3, o3);
         Transaction data3 = new Transaction(a3, 1999, s3, b3, auc3, 700);
 
+        Choice t= new Choice();
+        Choice ch= new Choice();
+        Choice ch2= new Choice();
+        Choice ch3= new Choice();
+        Choice ch4= new Choice();
+        Choice ch5= new Choice();
+        Choice ch6=new Choice();
+
+        Frame f= new Frame("choice");
+        Frame f2= new Frame("choice 2");
+        Panel p= new Panel();
+        Panel p2= new Panel();
+
+        Label l0= new Label();
+        Label l= new Label();
+        Label l2= new Label();
+        Label l3= new Label();
+        Label l4= new Label();
+        Label l5=new Label();
+        Label l6= new Label();
+
+        l0.setText("Please select a transaction number");
+        t.add("1");
+        t.add("2");
+        t.add("3");
+
+        l.setText("Please select an artefact: ");
+        ch.add("Painting");
+        ch.add("Drawing");
+        ch.add("Sketch");
+
+        l2.setText("Please select a country: ");
+        ch2.add("USA");
+        ch2.add("France");
+        ch2.add("Italy");
+
+        l3.setText("Please select an owner: ");
+        ch3.add("Mary");
+        ch3.add("Lisa");
+        ch3.add("Sam");
+
+        l4.setText("Please select a seller: ");
+        ch4.add("Amy");
+        ch4.add("Karen");
+        ch4.add("Kevin");
+
+        l5.setText("Please select a buyer: ");
+        ch5.add("Tom");
+        ch5.add("Mike");
+        ch5.add("Alan");
+
+        l6.setText("Please select an auction house: ");
+        ch6.add("Olive");
+        ch6.add("Carly");
+        ch6.add("Erin");
+
+        Button ent= new Button("enter");
+        Button ent2=new Button("enter");
+
+        p.add(l0);
+        p.add(t);
+        p.add(l);
+        p.add(ch);
+        p.add(l2);
+        p.add(ch2);
+        p.add(l3);
+        p.add(ch3);
+        p.add(l4);
+        p.add(ch4);
+        p.add(l5);
+        p.add(ch5);
+        p.add(l6);
+        p.add(ch6);
+        p.add(ent);
+
+        f.add(p);
+        f.show();
+        f.setSize(300,400);
+
+        p2.add(l0);
+        p2.add(t);
+        p2.add(l);
+        p2.add(ch);
+        p2.add(l2);
+        p2.add(ch2);
+        p2.add(l3);
+        p2.add(ch3);
+        p2.add(l4);
+        p2.add(ch4);
+        p2.add(l5);
+        p2.add(ch5);
+        p2.add(l6);
+        p2.add(ch6);
+       // p2.add(ent2);
+        f2.add(p2);
+
+        ActionListener act= new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(ch.getSelectedItem().equals("Painting")){
+                    if(ch2.getSelectedItem().equals("USA")){
+                        a.setCountry(c);}
+                    if(ch2.getSelectedItem().equals("France")){
+                        a.setCountry(c2); }
+                    if (ch2.getSelectedItem().equals("Italy")){
+                        a.setCountry(c3); }
+                    if(ch3.getSelectedItem().equals("Mary")){
+                        a.setOwner(o); }
+                    if(ch3.getSelectedItem().equals("Lisa")){
+                        a.setOwner(o2); }
+                    if(ch3.getSelectedItem().equals("Sam")){
+                        a.setOwner(o3); }
+                    if(t.getSelectedItem().equals("1")){
+                        data1.setArt(a); }
+                    if(t.getSelectedItem().equals("2")){
+                        data2.setArt(a); }
+                    if(t.getSelectedItem().equals("3")){
+                        data3.setArt(a); }
+                }
+                else if(ch.getSelectedItem().equals("Drawing")){
+                    if(ch2.getSelectedItem().equals("USA")){
+                        a2.setCountry(c);}
+                    if(ch2.getSelectedItem().equals("France")){
+                        a2.setCountry(c2); }
+                    if (ch2.getSelectedItem().equals("Italy")){
+                        a2.setCountry(c3); }
+                    if(ch3.getSelectedItem().equals("Mary")){
+                        a2.setOwner(o); }
+                    if(ch3.getSelectedItem().equals("Lisa")){
+                        a2.setOwner(o2); }
+                    if(ch3.getSelectedItem().equals("Sam")){
+                        a2.setOwner(o3); }
+                    if(t.getSelectedItem().equals("1")){
+                        data1.setArt(a2); }
+                    if(t.getSelectedItem().equals("2")){
+                        data2.setArt(a2); }
+                    if(t.getSelectedItem().equals("3")){
+                        data3.setArt(a2); }
+                }
+                else if(ch.getSelectedItem().equals("Sketch")){
+                    if(ch2.getSelectedItem().equals("USA")){
+                        a3.setCountry(c);}
+                    if(ch2.getSelectedItem().equals("France")){
+                        a3.setCountry(c2); }
+                    if (ch2.getSelectedItem().equals("Italy")){
+                        a3.setCountry(c3); }
+                    if(ch3.getSelectedItem().equals("Mary")){
+                        a3.setOwner(o); }
+                    if(ch3.getSelectedItem().equals("Lisa")){
+                        a3.setOwner(o2); }
+                    if(ch3.getSelectedItem().equals("Sam")){
+                        a3.setOwner(o3); }
+                    if(t.getSelectedItem().equals("1")){
+                        data1.setArt(a3); }
+                    if(t.getSelectedItem().equals("2")){
+                        data2.setArt(a3); }
+                    if(t.getSelectedItem().equals("3")){
+                        data3.setArt(a3); }
+                }
+                if(t.getSelectedItem().equals("1")){
+                    if(ch4.getSelectedItem().equals("Amy")){
+                        data1.setSeller(s); }
+                    if(ch4.getSelectedItem().equals("Karen")){
+                        data1.setSeller(s2); }
+                    if(ch4.getSelectedItem().equals("Kevin")){
+                        data1.setSeller(s3); }
+                    if(ch5.getSelectedItem().equals("Tom")){
+                        data1.setBuyer(b); }
+                    if(ch5.getSelectedItem().equals("Mike")){
+                        data1.setBuyer(b2); }
+                    if(ch5.getSelectedItem().equals("Alan")){
+                        data1.setBuyer(b3); }
+                    if(ch6.getSelectedItem().equals("Olive")){
+                        data1.setAucHouse(auc); }
+                    if(ch6.getSelectedItem().equals("Carly")){
+                        data1.setAucHouse(auc2); }
+                    if(ch6.getSelectedItem().equals("Erin")){
+                        data1.setAucHouse(auc3); }
+                }
+                else if(t.getSelectedItem().equals("2")){
+                    if(ch4.getSelectedItem().equals("Amy")){
+                        data2.setSeller(s); }
+                    if(ch4.getSelectedItem().equals("Karen")){
+                        data2.setSeller(s2); }
+                    if(ch4.getSelectedItem().equals("Kevin")){
+                        data2.setSeller(s3); }
+                    if(ch5.getSelectedItem().equals("Tom")){
+                        data2.setBuyer(b); }
+                    if(ch5.getSelectedItem().equals("Mike")){
+                        data2.setBuyer(b2); }
+                    if(ch5.getSelectedItem().equals("Alan")){
+                        data2.setBuyer(b3); }
+                    if(ch6.getSelectedItem().equals("Olive")){
+                        data2.setAucHouse(auc); }
+                    if(ch6.getSelectedItem().equals("Carly")){
+                        data2.setAucHouse(auc2); }
+                    if(ch6.getSelectedItem().equals("Erin")){
+                        data2.setAucHouse(auc3); }
+                }
+                else if(t.getSelectedItem().equals("3")){
+                    if(ch4.getSelectedItem().equals("Amy")){
+                        data3.setSeller(s); }
+                    if(ch4.getSelectedItem().equals("Karen")){
+                        data3.setSeller(s2); }
+                    if(ch4.getSelectedItem().equals("Kevin")){
+                        data3.setSeller(s3); }
+                    if(ch5.getSelectedItem().equals("Tom")){
+                        data3.setBuyer(b); }
+                    if(ch5.getSelectedItem().equals("Mike")){
+                        data3.setBuyer(b2); }
+                    if(ch5.getSelectedItem().equals("Alan")){
+                        data3.setBuyer(b3); }
+                    if(ch6.getSelectedItem().equals("Olive")){
+                        data3.setAucHouse(auc); }
+                    if(ch6.getSelectedItem().equals("Carly")){
+                        data3.setAucHouse(auc2); }
+                    if(ch6.getSelectedItem().equals("Erin")){
+                        data3.setAucHouse(auc3); }
+                }
+                f.dispose();
+                f2.show();
+            }
+        };
+
+        ent.addActionListener(act);
+
+
+       /* System.out.println("Please pick an owner: Mary, Lisa, or Sam:");
+        String owner1= in.next();
+
+        if(owner1.equals("Mary")){
+            a.setOwner(o);
+        }
+        else if(owner1.equals("Lisa")){
+            a.setOwner(o2);
+        }
+        else if(owner1.equals("Sam")){
+            a.setOwner(o3);
+        }
+        else {
+            System.out.println("Error, choice not valid");
+            System.exit(-1);
+        }
+        System.out.println("Please pick a seller: Amy, Karen, or Kevin ");
+        String seller1= in.next();
+        if(seller1.equals("Amy")){
+            data1.setSeller(s);
+        }
+        else if(seller1.equals("Karen")){
+            data1.setSeller(s2);
+        }
+        else if(seller1.equals("Kevin")){
+            data1.setSeller(s3);
+        }
+        else {
+            System.out.println("Error, choice not valid");
+            System.exit(-1);
+        }
+
+        System.out.println("Please pick a buyer: Tom, Mike, or Alan");
+        String buyer1= in.next();
+        if(buyer1.equals("Tom")){
+            data1.setBuyer(b);
+        }
+        else if(buyer1.equals("Mike")){
+            data1.setBuyer(b2);        }
+        else if(buyer1.equals("Alan")){
+            data1.setBuyer(b3);
+        }
+        else {
+            System.out.println("Error, choice not valid");
+            System.exit(-1);
+        }
+        */
+
 
         int prefix = 4;   //hash starts with four zeroes
          String prefixString = new String(new char[prefix]).replace('\0', '0');
 
-
         Block genesisBlock = new Block(data1, " ", new Date().getTime());
         genesisBlock.mineBlock1(prefix);
-
-        System.out.println("Genesis Block");
-        System.out.println(genesisBlock.verify_Blockchain(blockchain));
-
-
         if (genesisBlock.getHash().substring(0, prefix).equals(prefixString) && genesisBlock.verify_Blockchain(blockchain))
             blockchain.add(genesisBlock);
         else
@@ -51,10 +325,6 @@ public class Main {
 
        Block secondBlock = new Block(data2, blockchain.get(blockchain.size() - 1).getHash(),new Date().getTime());
         secondBlock.mineBlock1(prefix);
-
-        System.out.println("Second Block");
-        System.out.println(secondBlock.verify_Blockchain(blockchain));
-
         if (secondBlock.getHash().substring(0, prefix).equals(prefixString) && secondBlock.verify_Blockchain(blockchain))
             blockchain.add(secondBlock);
         else
@@ -62,16 +332,9 @@ public class Main {
 
         Block newBlock = new Block(data3,blockchain.get(blockchain.size() - 1).getHash(),new Date().getTime());
         newBlock.mineBlock(prefix);
-
-        System.out.println("Third Block");
-        System.out.println(secondBlock.verify_Blockchain(blockchain));
-        System.out.println(newBlock.getHash());
-
         if (newBlock.getHash().substring(0, prefix).equals(prefixString) && newBlock.verify_Blockchain(blockchain))
             blockchain.add(newBlock);
         else
             System.out.println("Malicious block, not added to the chain");
-
-
     }
 }

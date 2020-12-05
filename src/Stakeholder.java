@@ -1,8 +1,8 @@
 public class Stakeholder {
-    String ID;
-    String name;
-    String addr;
-    double bal;
+    private String ID;
+   private String name;
+   private String addr;
+   private double bal;
 
     public Stakeholder(){}
 
