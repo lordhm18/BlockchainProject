@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
-
 public class Main {
     static ArrayList<Block> blockchain = new ArrayList<>();
 
@@ -27,7 +26,6 @@ public class Main {
         Stakeholder c2 = new Stakeholder("C989", "France", "25 FR Drive", 15000);
         Artefact a2 = new Artefact("D678", "Drawing", c2, o2);
         Transaction data2 = new Transaction(a2, 1990, s2, b2, auc2, 1500);
-
 
         Stakeholder o3 = new Stakeholder("O555", "Sam", "7 Lion St", 6500);
         Stakeholder s3 = new Stakeholder("S888", "Kevin", "16 Art Circle", 10000);
@@ -97,11 +95,8 @@ public class Main {
 
         Button ent = new Button("enter");
         Button inp1 = new Button("First transaction");
-        Button ent1 = new Button("enter");
         Button inp2 = new Button("Second transaction");
-        Button ent2 = new Button("enter");
         Button inp3 = new Button("Third transaction");
-        Button ent3 = new Button("enter");
         Button done = new Button("Done");
 
         p.add(l0);
@@ -120,7 +115,6 @@ public class Main {
         p.add(ch6);
         p.add(ent);
 
-
         l7.setText("Please select transaction number:");
         l8.setText("Please press done after inputting data for all three transactions");
         p2.add(l7);
@@ -132,69 +126,36 @@ public class Main {
 
         f2.add(p2);
         f.add(p);
-
-        //p2.add(p);
-        // f.add(p2);
-        // f.show();
         f2.show();
         f2.setSize(400, 300);
         f.setSize(300, 400);
-
-      /*  p2.add(l0);
-        p2.add(t);
-        p2.add(l);
-        p2.add(ch);
-        p2.add(l2);
-        p2.add(ch2);
-        p2.add(l3);
-        p2.add(ch3);
-        p2.add(l4);
-        p2.add(ch4);
-        p2.add(l5);
-        p2.add(ch5);
-        p2.add(l6);
-        p2.add(ch6);
-       // p2.add(ent2);
-        f2.add(p2);
-       */
 
         ActionListener act = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (ch.getSelectedItem().equals("Painting")) {
-                    if (ch2.getSelectedItem().equals("USA") || ch3.getSelectedItem().equals("Mary")) {
-                        a.setCountry(c);
-                        a.setOwner(o);
-                    }
-                    if (ch2.getSelectedItem().equals("France") || ch3.getSelectedItem().equals("Lisa")) {
-                        a.setCountry(c2);
-                        a.setOwner(o2);
-                    }
-                    if (ch2.getSelectedItem().equals("Italy") || ch3.getSelectedItem().equals("Sam")) {
-                        a.setCountry(c3);
-                        a.setOwner(o3);
-                    }
-
-                   /* if(ch3.getSelectedItem().equals("Mary")){
+                    if (ch2.getSelectedItem().equals("USA")) {
+                        a.setCountry(c);                    }
+                    if (ch2.getSelectedItem().equals("France")) {
+                        a.setCountry(c2);                    }
+                    if (ch2.getSelectedItem().equals("Italy")) {
+                        a.setCountry(c3);                    }
+                   if(ch3.getSelectedItem().equals("Mary")){
                         a.setOwner(o); }
                     if(ch3.getSelectedItem().equals("Lisa")){
                         a.setOwner(o2); }
                     if(ch3.getSelectedItem().equals("Sam")){
                         a.setOwner(o3); }
 
-                    */
-
                     if (t.getSelectedItem().equals("1")) {
-                        data1.setArt(a);
-                    }
+                        data1.setArt(a);                    }
                     if (t.getSelectedItem().equals("2")) {
-                        data2.setArt(a);
-                    }
+                        data2.setArt(a);                    }
                     if (t.getSelectedItem().equals("3")) {
-                        data3.setArt(a);
-                    }
-                } else if (ch.getSelectedItem().equals("Drawing")) {
-                  /*  if(ch2.getSelectedItem().equals("USA")){
+                        data3.setArt(a);                    }
+                }
+                else if (ch.getSelectedItem().equals("Drawing")) {
+                    if(ch2.getSelectedItem().equals("USA")){
                         a2.setCountry(c);}
                     if(ch2.getSelectedItem().equals("France")){
                         a2.setCountry(c2); }
@@ -206,30 +167,16 @@ public class Main {
                         a2.setOwner(o2); }
                     if(ch3.getSelectedItem().equals("Sam")){
                         a2.setOwner(o3); }
-                   */
-                    if (ch2.getSelectedItem().equals("USA") || ch3.getSelectedItem().equals("Mary")) {
-                        a.setCountry(c);
-                        a.setOwner(o);
-                    }
-                    if (ch2.getSelectedItem().equals("France") || ch3.getSelectedItem().equals("Lisa")) {
-                        a.setCountry(c2);
-                        a.setOwner(o2);
-                    }
-                    if (ch2.getSelectedItem().equals("Italy") || ch3.getSelectedItem().equals("Sam")) {
-                        a.setCountry(c3);
-                        a.setOwner(o3);
-                    }
+
                     if (t.getSelectedItem().equals("1")) {
-                        data1.setArt(a2);
-                    }
+                        data1.setArt(a2);                    }
                     if (t.getSelectedItem().equals("2")) {
-                        data2.setArt(a2);
-                    }
+                        data2.setArt(a2);                    }
                     if (t.getSelectedItem().equals("3")) {
-                        data3.setArt(a2);
-                    }
-                } else if (ch.getSelectedItem().equals("Sketch")) {
-                    /*if(ch2.getSelectedItem().equals("USA")){
+                        data3.setArt(a2);                    }
+                }
+                else if (ch.getSelectedItem().equals("Sketch")) {
+                    if(ch2.getSelectedItem().equals("USA")){
                         a3.setCountry(c);}
                     if(ch2.getSelectedItem().equals("France")){
                         a3.setCountry(c2); }
@@ -241,29 +188,15 @@ public class Main {
                         a3.setOwner(o2); }
                     if(ch3.getSelectedItem().equals("Sam")){
                         a3.setOwner(o3); }
-                     */
-                    if (ch2.getSelectedItem().equals("USA") || ch3.getSelectedItem().equals("Mary")) {
-                        a.setCountry(c);
-                        a.setOwner(o);
-                    }
-                    if (ch2.getSelectedItem().equals("France") || ch3.getSelectedItem().equals("Lisa")) {
-                        a.setCountry(c2);
-                        a.setOwner(o2);
-                    }
-                    if (ch2.getSelectedItem().equals("Italy") || ch3.getSelectedItem().equals("Sam")) {
-                        a.setCountry(c3);
-                        a.setOwner(o3);
-                    }
+
                     if (t.getSelectedItem().equals("1")) {
-                        data1.setArt(a3);
-                    }
+                        data1.setArt(a3);                }
                     if (t.getSelectedItem().equals("2")) {
-                        data2.setArt(a3);
-                    }
+                        data2.setArt(a3);                    }
                     if (t.getSelectedItem().equals("3")) {
-                        data3.setArt(a3);
-                    }
+                        data3.setArt(a3);                    }
                 }
+
                 if (t.getSelectedItem().equals("1")) {
                     if (ch4.getSelectedItem().equals("Amy")) {
                         data1.setSeller(s);
@@ -366,8 +299,6 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 f2.dispose();
-                //   }
-                // };
 
                 int prefix = 4;   //hash starts with four zeroes
                 String prefixString = new String(new char[prefix]).replace('\0', '0');

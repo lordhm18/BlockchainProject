@@ -1,5 +1,3 @@
-import java.time.LocalDateTime;
-
 public class Transaction {
     private Artefact art;
     private int timestamp;
