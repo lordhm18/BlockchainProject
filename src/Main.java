@@ -7,8 +7,6 @@ import java.util.Date;
 public class Main {
     static ArrayList<Block> blockchain = new ArrayList<>();
 
-    //public static void main(String[] args) {
-
         static Stakeholder o = new Stakeholder("O333", "Mary", "25 Spring St", 5000);
         static Stakeholder s = new Stakeholder("S123", "Amy", "12 Oak Circle", 1000);
         static Stakeholder b = new Stakeholder("B456", "Tom", "3 Penny Ln", 20000);
@@ -55,13 +53,13 @@ public class Main {
     static     Label l6 = new Label();
     static     Label l7 = new Label();
     static    Label l8 = new Label();
-    static Button ent = new Button("enter");
+    static    Button ent = new Button("enter");
     static   Button inp1 = new Button("First transaction");
     static    Button inp2 = new Button("Second transaction");
     static    Button inp3 = new Button("Third transaction");
     static    Button done = new Button("Done");
 
-    public static void makeFrame(){
+    public static void makeFrame(){//add options/text/buttons to frame
         l0.setText("Please select the transaction number");
         t.add("1");
         t.add("2");
@@ -128,7 +126,7 @@ public class Main {
         f2.setSize(400, 300);
         f.setSize(300, 400);}
 
-        static ActionListener act = new ActionListener() {
+        static ActionListener act = new ActionListener() {//set data based on user input
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (ch.getSelectedItem().equals("Painting")) {
@@ -285,7 +283,7 @@ public class Main {
             }
         };
 
-       static ActionListener inp = new ActionListener() {
+       static ActionListener inp = new ActionListener() {//return to previous window
             @Override
             public void actionPerformed(ActionEvent e) {
                 f2.dispose();
@@ -293,7 +291,7 @@ public class Main {
             }
         };
 
-       static ActionListener fin = new ActionListener() {
+       static ActionListener fin = new ActionListener() {//add blocks to blockchain based on user input
             @Override
             public void actionPerformed(ActionEvent e) {
                 f2.dispose();
@@ -335,6 +333,6 @@ public class Main {
         inp3.addActionListener(inp);
         ent.addActionListener(act);
 
-        done.addActionListener(fin);
+        done.addActionListener(fin);//add blocks to blockchain
     }
 }

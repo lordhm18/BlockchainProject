@@ -11,9 +11,6 @@ public class Block {
     int nonce;
     String hash;
 
-    public Block() {
-    }
-
     public Block(Transaction data,String previousHash,long timeStamp){
         this.data=data;
         this.previousHash=previousHash;
@@ -32,7 +29,7 @@ public class Block {
         this.timeStamp = t;
     }
 
-    public void setNonce() {
+    public void setNonce() {//generate random nonce
         Random num = new Random();
         int n = 100000 + num.nextInt(999999);
         this.nonce = n;
@@ -82,7 +79,7 @@ public class Block {
         return buffer.toString();
     }
 
-    public void mineBlock(int prefix) {
+    public void mineBlock(int prefix) {//method to mine blocks based on TreatySC condition
         String prefixString = new String(new char[prefix]).replace('\0', '0');
         if (TreatySC(data)){
             boolean found=false;
@@ -118,12 +115,8 @@ public class Block {
         }
     }
 
-    public boolean TreatySC(Transaction t){
+    public boolean TreatySC(Transaction t){//if valid, update balances
        boolean valid= false;
-      //conditions not used:
-       // ArrayList<Transaction> tmp = new ArrayList<>();
-       //tmp= retrieveProvenance(data.getArt().getID());
-      // if(tmp.size()>=2) {
            if (data.getBuyer().getBal() >= data.getPrice()) {
                double p = data.getPrice();
                data.getAucHouse().setBal(p * .1);
@@ -154,7 +147,7 @@ public class Block {
             arr.add(Main.blockchain.get(i).data);
         }
         }
-        return arr;//return array of type transaction
+        return arr;
     }
 
     public ArrayList<Transaction> retrieveProvenance(String ID, long timeStamp) {

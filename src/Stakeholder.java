@@ -4,8 +4,6 @@ public class Stakeholder {
    private String addr;
    private double bal;
 
-    public Stakeholder(){}
-
     public Stakeholder(String ID, String n, String a, double bal ){
         this.ID=ID;
         this.name=n;

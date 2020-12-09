@@ -4,8 +4,6 @@ public class Artefact {
     private Stakeholder country;
     private Stakeholder owner;
 
-    public Artefact(){}
-
     public Artefact(String ID, String name, Stakeholder country, Stakeholder owner ){
         this.ID=ID;
         this.name=name;

@@ -6,8 +6,6 @@ public class Transaction {
     private Stakeholder aucHouse;
     private double price;
 
-    public Transaction(){}
-
     public Transaction(Artefact art, int timestamp,Stakeholder seller,Stakeholder buyer,Stakeholder aucHouse,double price){
         this.art=art;
         this.timestamp=timestamp;
